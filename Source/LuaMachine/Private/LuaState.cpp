@@ -1901,7 +1901,9 @@ bool ULuaState::Resume(int Index, int NArgs)
 	}
 
 	lua_xmove(L, Coroutine, NArgs);
-	int Ret = lua_resume(Coroutine, L, NArgs);
+
+	int nresults;
+	int Ret = lua_resume(Coroutine, L, NArgs, &nresults);
 	if (Ret != LUA_OK && Ret != LUA_YIELD)
 	{
 		lua_pushboolean(L, 0);
@@ -1909,9 +1911,9 @@ bool ULuaState::Resume(int Index, int NArgs)
 		return false;
 	}
 
-	int NRet = lua_gettop(Coroutine);
+	//int NRet = lua_gettop(Coroutine);
 	lua_pushboolean(L, 1);
-	lua_xmove(Coroutine, L, NRet);
+	lua_xmove(Coroutine, L, nresults);
 	return true;
 }
 
