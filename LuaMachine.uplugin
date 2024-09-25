@@ -13,14 +13,13 @@
   "CanContainContent": true,
   "IsBetaVersion": false,
   "Installed": false,
-  "EngineVersion": "5.3",
   "Modules": [
     {
       "Name": "LuaMachine",
       "Type": "Runtime",
       "LoadingPhase": "PreDefault",
       "WhitelistPlatforms": [
-        "Win64"
+        "Win64",
       ]
     },
     {
